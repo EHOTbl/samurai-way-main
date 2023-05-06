@@ -2,6 +2,10 @@
     display: grid;
     grid-template-columns: 2fr 10fr;
 }
+.dialog{
+    display: flex;
+    align-items: flex-end;
+}
 
 .dialogItems {
     padding: 10px;
@@ -9,12 +13,47 @@
 
 .dialogItems .active{
     color: greenyellow;
+    padding: 30px;
+    text-decoration: none;
 }
+
+
 
 .messages {
     padding: 10px;
+    color: white;
 }
 
 .messages .message {
-
+    padding: 10px;
+    font-size: 18px;
 }
+.message {
+    border:1px solid black;
+    margin: 71px 0  0 0;
+    width: 30%;
+    border-radius: 20px;
+    color: black;
+    background-color: white;
+}
+
+.message::before{
+    /*content: '';*/
+    /*border: 20px solid transparent;*/
+    /*border-right: 0px solid green;*/
+    /*border-bottom: 10px solid green;*/
+    /*right: 5px;*/
+}
+
+.active a{
+    text-decoration: none;
+    color: black;
+    font-weight: 600;
+    font-size: 20px;
+}
+
+.avatar {
+    border-radius: 50%;
+    width: 60px;
+}
+

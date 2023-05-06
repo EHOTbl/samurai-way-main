@@ -1,20 +1,60 @@
-import React from "react";
+import React, {useRef} from "react";
 import c from "./MyPosts.module.css";
 import Post from "./Post/Post";
+import {PostsType} from "../../../Redux/state";
+import {AddPostType} from "../Profile";
 
-const MyPosts = (props:any) => {
+
+
+
+export type PropsType ={
+    posts:Array<PostsType>
+    newPostText:string
+
+
+}
+const MyPosts:React.FC<PropsType&AddPostType> = (props) => {
+
+    let postsElements = props.posts.map(p=><Post message={p.message} likeCount={p.likesCount}/>)
+
+    let newPostElement =useRef<HTMLInputElement>(null)
+
+    let addPost =()=>{
+       if(newPostElement.current !==null){
+           props.addPost(newPostElement.current.value)
+           // alert(newPostElement.current.value)
+           // newPostElement.current.value = ''
+
+       }
+    }
+
+    let onPostChange =()=>{
+        // @ts-ignore
+        let text = newPostElement.current.value
+        props.updateNewPostText(text)
+        // console.log(text)
+    }
+
+
     return (
 
-        <div>
-            {props.hey}
-            MyPosts
+        <div className={c.postBlock}>
+             <h2>
+                <div>MyPosts</div>
+            </h2>
             <div>
-                <textarea></textarea>
-                <button>Add post</button>
+                <div>
+                    <textarea onChange={onPostChange} ref={newPostElement} value={props.newPostText}/>
+                </div>
+                <div>
+                    <button onClick={addPost}>Add post</button>
+                </div>
+
             </div>
-            <Post message="Hi,how ary you" likeCount='15' />
-            <Post message="It's second post" likeCount='25' />
-            <Post message="TS" likeCount='5' />
+            <div className={c.posts}>
+                {postsElements}
+            </div>
+
         </div>
 
     )

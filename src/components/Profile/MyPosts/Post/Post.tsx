@@ -7,7 +7,7 @@ type propsTypePosts ={
     likeCount:string
 }
 
-const Post = (props:propsTypePosts) => {
+const Post:React.FC<propsTypePosts> = (props) => {
     return (
         <div>
             <div className={c.posts}>

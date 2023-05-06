@@ -1,17 +1,28 @@
 import React from "react";
 import classes from "./Profile.module.css";
-import MyPosts from "./MyPosts/MyPosts";
+import MyPosts, {PropsType} from "./MyPosts/MyPosts";
+import ProfileInfo from "./MyPosts/ProfileInfo/ProfileInfo";
+import {PostsType} from "../../Redux/state";
 
-const Profile = () => {
+export type AddPostType = {
+    addPost: (postMessage: string) => void
+
+    pofilePage: {
+        posts: Array<PostsType>,
+        newPostText: string
+    }
+
+    updateNewPostText: (text: string) => void
+}
+
+const Profile: React.FC<PropsType & AddPostType> = (props) => {
+
     return (
         <div>
-            <div><img
-                src="https://imageio.forbes.com/specials-images/imageserve/63f76a39c20b7b002a093b40/0x0.jpg?format=jpg&width=1200"
-                alt="main img"/></div>
-            <div>
-                ava+descr
-            </div>
-            <MyPosts hey='yo'/>
+            <ProfileInfo/>
+            <MyPosts posts={props.posts} addPost={props.addPost} pofilePage={props.pofilePage}
+                     updateNewPostText={props.updateNewPostText}
+                     newPostText={props.pofilePage.newPostText}/>
         </div>)
 }
 
