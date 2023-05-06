@@ -23,7 +23,7 @@
 // ]
 
 
-let store ={
+let store = {
     _state: {
         profilePage: {
             posts: [
@@ -33,16 +33,16 @@ let store ={
                 {id: 4, message: "TS2", likesCount: '23'},
                 {id: 5, message: "TS3", likesCount: '23'},
             ],
-            newPostText:"StringProps"
+            newPostText: "StringProps"
         },
         messagesPage: {
             dialogs: [
-                {id: 1, name: "Dima", avatar:"../avatars/1.svg"},
-                {id: 2, name: "Leha", avatar:"../avatars/2.svg"},
-                {id: 3, name: "Sveta", avatar:"../avatars/3.svg"},
-                {id: 4, name: "Ignat", avatar:"..//avatars/4.svg"},
-                {id: 5, name: "Oleg", avatar:"../avatars/5.svg"},
-                {id: 6, name: "Olya", avatar:"..//avatars/6.svg"},
+                {id: 1, name: "Dima", avatar: "../avatars/1.svg"},
+                {id: 2, name: "Leha", avatar: "../avatars/2.svg"},
+                {id: 3, name: "Sveta", avatar: "../avatars/3.svg"},
+                {id: 4, name: "Ignat", avatar: "..//avatars/4.svg"},
+                {id: 5, name: "Oleg", avatar: "../avatars/5.svg"},
+                {id: 6, name: "Olya", avatar: "..//avatars/6.svg"},
             ],
             messages: [
                 {id: 1, message: "Hi"},
@@ -55,30 +55,30 @@ let store ={
         }
         , sidebar: {},
     },
-    getState(){
-        return this._state;
-    },
-    _callSubscriber(state:any){
+    _callSubscriber(state: any) {
         console.log("state changed")
     },
-     addPost(){
+    getState() {
+        return this._state;
+    },
+    addPost() {
         let newPost = {
-            id:6,
-            message:this._state.profilePage.newPostText,
-            likesCount:0,
+            id: 6,
+            message: this._state.profilePage.newPostText,
+            likesCount: 0,
         }
         // @ts-ignore
         this._state.profilePage.posts.push(newPost)
-        this._state.profilePage.newPostText =''
+        this._state.profilePage.newPostText = ''
         this._callSubscriber(this._state)
     },
-    updateNewPostText(newText:string){
+    updateNewPostText(newText: string) {
         // @ts-ignore
-        this._state.profilePage.newPostText =newText;
+        this._state.profilePage.newPostText = newText;
         this._callSubscriber(this._state)
     },
-    subscribe(observer:any){
-        this._callSubscriber=observer
+    subscribe(observer: any) {
+        this._callSubscriber = observer
     }
 }
 
@@ -93,7 +93,7 @@ export type PostsType = {
 export type DialogsType = {
     id: string | number,
     name: string
-    avatar:string
+    avatar: string
 }
 
 
@@ -102,14 +102,12 @@ export type MessagesType = {
     message: string
 }
 
-export type profilePageType ={
-
-}
+export type profilePageType = {}
 
 export type StateType = {
     profilePage: {
         posts: Array<PostsType>,
-        newPostText:string
+        newPostText: string
     },
     messagesPage: {
         dialogs: DialogsType[],
